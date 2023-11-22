@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        table {
+            border: 1px solid whitesmoke;
+            margin:30px;
+            background-color: #1b1b1b;
+            border-radius: auto;
+        }
+
+        input[type="button"] {
+            width: 80%;
+            padding: 20px 100px;
+            background-color: pink;
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            font-family: Times;
+            border: none;
+            border-radius: 80px;
+
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 20px 30px;
+            border-radius: 50px;
+        }
+        input[type="button"]:hover {
+            background-color: black;
+
+        }
+        input[type="button"][value="="],
+        input[type="button"][value="+"],
+        input[type="button"][value="-"],
+        input[type="button"][value="*"],
+        input[type="button"][value="/"] {
+            background-color: white;
+
+            color: pink;
+
+            input[type="button"][value="C"] {
+            background-color: #f5c71a;
+            color: black;
+
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr> <!--ROW1-->
+            <td colspan="3">
+                <input type="text" id="result">
+            </td>
+            <td><input type="button" value="C"></td>
+        </tr>
+        <tr> <!--ROW2-->
+            <td><input type="button" value="1"></td>
+            <td><input type="button" value="2"></td>
+            <td><input type="button" value="3"></td>
+            <td><input type="button" value="/"></td>
+        </tr>
+        <tr> <!--ROW3-->
+            <td><input type="button" value="4"></td>
+            <td><input type="button" value="5"></td>
+            <td><input type="button" value="6"></td>
+            <td><input type="button" value="*"></td>
+        </tr>
+        <tr> <!--ROW4-->
+            <td><input type="button" value="7"></td>
+            <td><input type="button" value="8"></td>
+            <td><input type="button" value="9"></td>
+            <td><input type="button" value="-"></td>
+        </tr>
+        <tr> <!--ROW5-->
+            <td><input type="button" value="."></td>
+            <td><input type="button" value="0"></td>
+            <td id="equal"><input type="button" value="="></td>
+            <td><input type="button" value="+"></td>
+        </tr>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var resultInput = document.getElementById('result');
+                var buttons = document.querySelectorAll('input[type="button"]');
+                buttons.forEach(function (button) {
+                    button.addEventListener('click', function () {
+                        var buttonText = this.value;
+                        if (buttonText === '=') {
+                            try {
+                                resultInput.value = eval(resultInput.value);
+                            } catch (error) {
+                                resultInput.value = 'Error';
+                            }
+                        } else if (buttonText === 'C') {
+                            resultInput.value = '';
+                        } else {
+                            resultInput.value += buttonText;
+                        }
+                    });
+                });
+            });
+        </script>
+    </table>
+</body>
+</html>
